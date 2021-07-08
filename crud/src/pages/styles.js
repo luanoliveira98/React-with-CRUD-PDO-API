@@ -80,6 +80,10 @@ export const InputRadio = styled.input`
     resize: vertical;
 `;
 
+export const ButtonAction = styled.section`
+    margin: 25px 0;
+`;
+
 export const ButtonSuccess = styled.button`
     background-color: #fff;
     color: #198754;
@@ -89,16 +93,25 @@ export const ButtonSuccess = styled.button`
     cursor: pointer;
     font-size: 18px;
     text-align: center;
-    min-width: 100px;
-    min-height: 40px;
     :hover{
         background-color: #198754;
         color: #fff;
     }
 `;
 
-export const ButtonAction = styled.section`
-    margin: 25px 0;
+export const ButtonPrimary = styled.button`
+    background-color: #fff;
+    color: #0d6efd;
+    padding: 6px 9px;
+    border: 1px solid #0d6efd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    :hover{
+        background-color: #0d6efd;
+        color: #fff;
+    }
 `;
 
 export const ButtonInfo = styled.button`
@@ -110,10 +123,84 @@ export const ButtonInfo = styled.button`
     cursor: pointer;
     font-size: 18px;
     text-align: center;
-    min-width: 100px;
-    min-height: 40px;
     :hover{
         background-color: #0dcaf0;
         color: #fff;
     }
+`;
+
+export const BtnSuccess = styled.button`
+    background-color: #fff;
+    color: #198754;
+    padding: auto;
+    border: 1px solid #198754;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    :hover{
+        background-color: #198754;
+        color: #fff;
+    }
+`;
+
+export const BtnPrimary = styled.button`
+    background-color: #fff;
+    color: #0d6efd;
+    padding: auto;
+    border: 1px solid #0d6efd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    :hover{
+        background-color: #0d6efd;
+        color: #fff;
+    }
+`;
+
+export const BtnInfo = styled.button`
+    background-color: #fff;
+    color: #0dcaf0;
+    padding: auto;
+    border: 1px solid #0dcaf0;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    :hover{
+        background-color: #0dcaf0;
+        color: #fff;
+    }
+`;
+
+export const BtnDanger = styled.button`
+    background-color: #fff;
+    color: #0d6efd;
+    padding: auto;
+    border: 1px solid #0d6efd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    :hover{
+        background-color: #0d6efd;
+        color: #fff;
+    }
+`;
+
+export const PLg = styled.p`
+    font-size: 16px;
 `;
