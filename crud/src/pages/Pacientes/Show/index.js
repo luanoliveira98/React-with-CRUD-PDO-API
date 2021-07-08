@@ -31,7 +31,7 @@ export const PacientesShow = (props) => {
                 <Titulo>Ficha de {title} - {data.nome}</Titulo>
                 <ButtonAction>
                     <Link to={"/"+url}>
-                        <BtnInfo><FaThList/></BtnInfo>
+                        <BtnInfo title="Listar"><FaThList/></BtnInfo>
                     </Link>
                 </ButtonAction>
             </ContentTitulo>

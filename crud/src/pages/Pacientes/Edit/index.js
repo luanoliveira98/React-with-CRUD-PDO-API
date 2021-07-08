@@ -72,7 +72,7 @@ export const PacientesEdit = (props) => {
             <Titulo>Editar {title}</Titulo>
             <ButtonAction>
                 <Link to={"/"+url}>
-                    <BtnInfo><FaThList/></BtnInfo>
+                    <BtnInfo title="Listar"><FaThList/></BtnInfo>
                 </Link>
             </ButtonAction>
         </ContentTitulo>

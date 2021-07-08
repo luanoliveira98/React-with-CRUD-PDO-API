@@ -65,7 +65,7 @@ export const PacientesCreate = () => {
             <Titulo>Cadastro de {title}</Titulo>
             <ButtonAction>
                 <Link to={"/"+url}>
-                    <BtnInfo><FaThList/></BtnInfo>
+                    <BtnInfo title="Listar"><FaThList/></BtnInfo>
                 </Link>
             </ButtonAction>
         </ContentTitulo>

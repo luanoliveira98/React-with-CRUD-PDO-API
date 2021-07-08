@@ -58,7 +58,7 @@ export const PacientesList = () => {
             <Titulo>Listar {title}</Titulo>
             <ButtonAction>
                 <Link to={"/"+url+"/cadastrar"}>
-                    <BtnSuccess><BsFillPersonPlusFill/></BtnSuccess>
+                    <BtnSuccess title="Cadastrar"><BsFillPersonPlusFill/></BtnSuccess>
                 </Link>
             </ButtonAction>
         </ContentTitulo>
@@ -82,9 +82,9 @@ export const PacientesList = () => {
                 <td>{d.telefone}</td>
                 <td>
                   <ContentTitulo>
-                    <Link to={"/"+url+"/"+d.id}><BtnPrimary><BsFillEyeFill/></BtnPrimary></Link>
-                    <Link to={"/"+url+"/"+d.id+"/editar"}><BtnWarning><BsPencilSquare/></BtnWarning></Link>
-                    <BtnDanger onClick={() => destroy(d.id)}><BsTrashFill/></BtnDanger>
+                    <Link to={"/"+url+"/"+d.id}><BtnPrimary title="Visualizar"><BsFillEyeFill/></BtnPrimary></Link>
+                    <Link to={"/"+url+"/"+d.id+"/editar"}><BtnWarning title="Editar"><BsPencilSquare/></BtnWarning></Link>
+                    <BtnDanger onClick={() => destroy(d.id)} title="Excluir"><BsTrashFill/></BtnDanger>
                   </ContentTitulo>
                 </td>
               </tr>
