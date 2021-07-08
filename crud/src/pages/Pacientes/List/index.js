@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
+import { BsFillEyeFill, BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
 
 import configData from "../../../configs/app.json";
-import {Table, Titulo, Container, ContentTitulo, ButtonAction, ButtonSuccess} from '../../styles';
+import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnDanger} from '../../styles';
+
 
 export const PacientesList = () => {
 
@@ -25,14 +27,14 @@ export const PacientesList = () => {
             <Titulo>Listar Pacientes</Titulo>
             <ButtonAction>
                 <Link to="/pacientes/cadastrar">
-                    <ButtonSuccess>Cadastrar</ButtonSuccess>
+                    <BtnSuccess><BsFillPersonPlusFill/></BtnSuccess>
                 </Link>
             </ButtonAction>
         </ContentTitulo>
         <Table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Nº</th>
               <th>Nome</th>
               <th>Email</th>
               <th>Telefone</th>
@@ -47,7 +49,11 @@ export const PacientesList = () => {
                 <td>{paciente.email}</td>
                 <td>{paciente.telefone}</td>
                 <td>
-                  <a href={'/pacientes/'+paciente.id}>Visualizar</a> | <a href={'/pacientes/'+paciente.id+'/editar'}>Editar</a> | <a href={'/pacientes/'+paciente.id+'/excluir'}>Excluir</a>
+                  <ContentTitulo>
+                    <Link to={"/pacientes/"+paciente.id}><BtnPrimary><BsFillEyeFill/></BtnPrimary></Link>
+                    <Link to={"/pacientes/"+paciente.id+"/editar"}><BtnSuccess><BsPencilSquare/></BtnSuccess></Link>
+                    <Link to={"/pacientes/"+paciente.id+"/excluir"}><BtnDanger><BsTrashFill/></BtnDanger></Link>
+                  </ContentTitulo>
                 </td>
               </tr>
             ))}

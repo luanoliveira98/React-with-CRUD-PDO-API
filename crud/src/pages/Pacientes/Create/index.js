@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
+import { FaThList } from 'react-icons/fa';
 
 import configData from "../../../configs/app.json";
-import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, InputRadio, ButtonSuccess, ContentTitulo, ButtonAction, ButtonInfo} from '../../styles';
+import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, InputRadio, ButtonSuccess, ContentTitulo, ButtonAction, BtnInfo} from '../../styles';
 
 export const PacientesCreate = () => {
 
@@ -61,7 +62,7 @@ export const PacientesCreate = () => {
             <Titulo>Cadastro de Paciente</Titulo>
             <ButtonAction>
                 <Link to="/pacientes">
-                    <ButtonInfo>Listar</ButtonInfo>
+                    <BtnInfo><FaThList/></BtnInfo>
                 </Link>
             </ButtonAction>
         </ContentTitulo>
