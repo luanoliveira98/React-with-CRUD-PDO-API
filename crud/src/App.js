@@ -5,6 +5,7 @@ import {Home} from './pages/Home';
 import {PacientesList} from './pages/Pacientes/List';
 import {PacientesCreate} from './pages/Pacientes/Create';
 import {PacientesShow} from './pages/Pacientes/Show';
+import {PacientesEdit} from './pages/Pacientes/Edit';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/pacientes" component={PacientesList}/>
           <Route path="/pacientes/cadastrar" component={PacientesCreate}/>
           <Route exact path="/pacientes/:id" component={PacientesShow}/>
+          <Route exact path="/pacientes/:id/editar" component={PacientesEdit}/>
         </Switch>
       </Router>
     </div>

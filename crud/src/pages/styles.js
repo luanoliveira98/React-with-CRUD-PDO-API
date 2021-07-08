@@ -129,6 +129,21 @@ export const ButtonInfo = styled.button`
     }
 `;
 
+export const ButtonWarning = styled.button`
+    background-color: #fff;
+    color: #ffc107;
+    padding: 6px 9px;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    :hover{
+        background-color: #ffc107;
+        color: #fff;
+    }
+`;
+
 export const BtnSuccess = styled.button`
     background-color: #fff;
     color: #198754;
@@ -197,6 +212,24 @@ export const BtnDanger = styled.button`
     align-items: center;
     :hover{
         background-color: #0d6efd;
+        color: #fff;
+    }
+`;
+
+export const BtnWarning = styled.button`
+    background-color: #fff;
+    color: #ffc107;
+    padding: auto;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    :hover{
+        background-color: #ffc107;
         color: #fff;
     }
 `;

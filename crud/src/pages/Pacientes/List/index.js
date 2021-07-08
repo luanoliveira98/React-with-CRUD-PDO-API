@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { BsFillEyeFill, BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
 
 import configData from "../../../configs/app.json";
-import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnDanger} from '../../styles';
+import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnWarning, BtnDanger} from '../../styles';
 
 
 export const PacientesList = () => {
@@ -51,7 +51,7 @@ export const PacientesList = () => {
                 <td>
                   <ContentTitulo>
                     <Link to={"/pacientes/"+paciente.id}><BtnPrimary><BsFillEyeFill/></BtnPrimary></Link>
-                    <Link to={"/pacientes/"+paciente.id+"/editar"}><BtnSuccess><BsPencilSquare/></BtnSuccess></Link>
+                    <Link to={"/pacientes/"+paciente.id+"/editar"}><BtnWarning><BsPencilSquare/></BtnWarning></Link>
                     <Link to={"/pacientes/"+paciente.id+"/excluir"}><BtnDanger><BsTrashFill/></BtnDanger></Link>
                   </ContentTitulo>
                 </td>
