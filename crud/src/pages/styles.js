@@ -14,6 +14,7 @@ export const Titulo = styled.h1`
 export const Table = styled.table`
     width: 100%;
     text-align: center;
+    justify-content: center;
     th{
         background-color: darkcyan;
         color: white;
@@ -29,6 +30,15 @@ export const ContentTitulo = styled.section`
     display: flex;
     justify-content: space-between;
 `;
+
+export const ContentActionSolo = styled.section`
+    padding: auto;
+`;
+
+export const TextCenter = styled.p`
+    text-align: center;
+`;
+
 
 export const Form = styled.form`
     margin: 0 auto;
