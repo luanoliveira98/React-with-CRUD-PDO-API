@@ -16,13 +16,16 @@ export const PacientesEdit = (props) => {
     const [telefone,setTelefone] = useState('');
     const [email,setEmail] = useState('');
 
+    const [title] = useState('Paciente');
+    const [url] = useState('pacientes');
+
     const [status,setStatus] = useState({
         type: '',
         message: ''
     });
 
-    const getPaciente = async() => {
-        fetch(configData.API_URL+"/pacientes/"+id)
+    const getData = async() => {
+        fetch(configData.API_URL+"/"+url+"/"+id)
         .then((response) => response.json())
         .then((responseJson) => (
             setNome(responseJson.data.nome),
@@ -35,14 +38,14 @@ export const PacientesEdit = (props) => {
     }
 
     useEffect(() => {
-        getPaciente();
+        getData();
     },[id])
 
-    const editPaciente = async e => {
+    const editData = async e => {
         e.preventDefault();
         console.log(sexo);
 
-        await fetch(configData.API_URL+"/pacientes/"+id, {
+        await fetch(configData.API_URL+"/"+url+"/"+id, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -66,15 +69,15 @@ export const PacientesEdit = (props) => {
   return (
     <Container>
         <ContentTitulo>
-            <Titulo>Editar Paciente</Titulo>
+            <Titulo>Editar {title}</Titulo>
             <ButtonAction>
-                <Link to="/pacientes">
+                <Link to={"/"+url}>
                     <BtnInfo><FaThList/></BtnInfo>
                 </Link>
             </ButtonAction>
         </ContentTitulo>
         {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
-        <Form onSubmit={editPaciente}>
+        <Form onSubmit={editData}>
             <div>
                 <Label>Nome Completo:</Label>
                 <Input type="text" name="nome" placeholder="Nome Completo" onChange={e => setNome(e.target.value)} value={nome} /> <br/><br/>

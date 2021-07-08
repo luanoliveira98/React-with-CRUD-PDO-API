@@ -11,8 +11,11 @@ export const PacientesShow = (props) => {
     const [id] = useState(props.match.params.id);
     const [data, setData] = useState([]);
 
-    const getPaciente = async() => {
-        fetch(configData.API_URL+"/pacientes/"+id)
+    const [title] = useState('Paciente');
+    const [url] = useState('pacientes');
+
+    const getData = async() => {
+        fetch(configData.API_URL+"/"+url+"/"+id)
         .then((response) => response.json())
         .then((responseJson) => (
             setData(responseJson.data)
@@ -20,14 +23,14 @@ export const PacientesShow = (props) => {
     }
 
     useEffect(() => {
-        getPaciente();
+        getData();
     })
     return (
         <Container>
             <ContentTitulo>
-                <Titulo>Ficha de Paciente - {data.nome}</Titulo>
+                <Titulo>Ficha de {title} - {data.nome}</Titulo>
                 <ButtonAction>
-                    <Link to="/pacientes">
+                    <Link to={"/"+url}>
                         <BtnInfo><FaThList/></BtnInfo>
                     </Link>
                 </ButtonAction>

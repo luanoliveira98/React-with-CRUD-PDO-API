@@ -7,7 +7,7 @@ import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, InputR
 
 export const PacientesCreate = () => {
 
-    const [paciente,setPaciente] = useState({
+    const [data,setData] = useState({
         nome: '',
         dt_nascimento: '',
         endereco: '',
@@ -16,22 +16,25 @@ export const PacientesCreate = () => {
         email: ''
     });
 
+    const [title] = useState('Paciente');
+    const [url] = useState('pacientes');
+
     const [status,setStatus] = useState({
         type: '',
         message: ''
     });
 
-    const valorInput = e => setPaciente({ ...paciente, [e.target.name]: e.target.value });
+    const valorInput = e => setData({ ...data, [e.target.name]: e.target.value });
 
-    const cadPaciente = async e => {
+    const registerData = async e => {
         e.preventDefault();
 
-        await fetch(configData.API_URL+"/pacientes", {
+        await fetch(configData.API_URL+"/"+url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(paciente)
+            body: JSON.stringify(data)
         })
         .then((response) => response.json())
         .then((responseJson) => {
@@ -59,15 +62,15 @@ export const PacientesCreate = () => {
   return (
     <Container>
         <ContentTitulo>
-            <Titulo>Cadastro de Paciente</Titulo>
+            <Titulo>Cadastro de {title}</Titulo>
             <ButtonAction>
-                <Link to="/pacientes">
+                <Link to={"/"+url}>
                     <BtnInfo><FaThList/></BtnInfo>
                 </Link>
             </ButtonAction>
         </ContentTitulo>
         {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
-        <Form onSubmit={cadPaciente}>
+        <Form onSubmit={registerData}>
             <div>
                 <Label>Nome Completo:</Label>
                 <Input type="text" name="nome" placeholder="Nome Completo" onChange={valorInput}/> <br/><br/>

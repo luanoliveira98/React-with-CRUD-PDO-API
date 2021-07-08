@@ -10,6 +10,9 @@ export const PacientesList = () => {
 
   const [data, setData] = useState([]);
 
+  const [title] = useState('Pacientes');
+  const [url] = useState('pacientes');
+
   const [status,setStatus] = useState({
     type: '',
     message: ''
@@ -17,7 +20,7 @@ export const PacientesList = () => {
 
   const destroy = async (id) => {
 
-    await fetch(configData.API_URL+"/pacientes/"+id, {
+    await fetch(configData.API_URL+"/"+url+"/"+id, {
       method: 'DELETE',
       headers: {
           'Content-Type': 'application/json'
@@ -35,11 +38,11 @@ export const PacientesList = () => {
             message: 'Erro ao conectar com o servidor!'
         })
     })
-    getPacientes();
+    getData();
   };
 
-  const getPacientes = async() => {
-    fetch(configData.API_URL+"/pacientes")
+  const getData = async() => {
+    fetch(configData.API_URL+"/"+url)
     .then((response) => response.json())
     .then((responseJson) => (
       setData(responseJson.data)
@@ -47,14 +50,14 @@ export const PacientesList = () => {
   }
 
   useEffect(() => {
-    getPacientes();
+    getData();
   },[])
   return (
     <Container>
         <ContentTitulo>
-            <Titulo>Listar Pacientes</Titulo>
+            <Titulo>Listar {title}</Titulo>
             <ButtonAction>
-                <Link to="/pacientes/cadastrar">
+                <Link to={"/"+url+"/cadastrar"}>
                     <BtnSuccess><BsFillPersonPlusFill/></BtnSuccess>
                 </Link>
             </ButtonAction>
@@ -71,17 +74,17 @@ export const PacientesList = () => {
             </tr>
           </thead>
           <tbody>
-            {Object.values(data).map(paciente => (
-              <tr key={paciente.id}>
-                <td>{paciente.id}</td>
-                <td>{paciente.nome}</td>
-                <td>{paciente.email}</td>
-                <td>{paciente.telefone}</td>
+            {Object.values(data).map(d => (
+              <tr key={d.id}>
+                <td>{d.id}</td>
+                <td>{d.nome}</td>
+                <td>{d.email}</td>
+                <td>{d.telefone}</td>
                 <td>
                   <ContentTitulo>
-                    <Link to={"/pacientes/"+paciente.id}><BtnPrimary><BsFillEyeFill/></BtnPrimary></Link>
-                    <Link to={"/pacientes/"+paciente.id+"/editar"}><BtnWarning><BsPencilSquare/></BtnWarning></Link>
-                    <BtnDanger onClick={() => destroy(paciente.id)}><BsTrashFill/></BtnDanger>
+                    <Link to={"/"+url+"/"+d.id}><BtnPrimary><BsFillEyeFill/></BtnPrimary></Link>
+                    <Link to={"/"+url+"/"+d.id+"/editar"}><BtnWarning><BsPencilSquare/></BtnWarning></Link>
+                    <BtnDanger onClick={() => destroy(d.id)}><BsTrashFill/></BtnDanger>
                   </ContentTitulo>
                 </td>
               </tr>
