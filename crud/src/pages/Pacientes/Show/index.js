@@ -74,7 +74,7 @@ export const PacientesShow = (props) => {
                         <td>{d.id}</td>
                         <td>{moment(d.dt_agendamento).format('DD/MM/yyyy')}</td>
                         <td>{d.horario}</td>
-                        <td>{d.especialidade_id}</td>
+                        <td>{d.especialidade}</td>
                         <td>{d.status}</td>
                         <td>
                         <ContentActionSolo>
