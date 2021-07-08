@@ -41,6 +41,7 @@ export const AlertSuccess = styled.p`
     border: 1px solid #badbcc;
     border-radius: 4px;
     padding: 7px;
+    text-align: center;
 `;
 
 export const AlertDanger = styled.p`
@@ -50,6 +51,7 @@ export const AlertDanger = styled.p`
     border: 1px solid #f5c2c7;
     border-radius: 4px;
     padding: 7px;
+    text-align: center;
 `;
 
 export const Label = styled.label`
@@ -200,9 +202,9 @@ export const BtnInfo = styled.button`
 
 export const BtnDanger = styled.button`
     background-color: #fff;
-    color: #0d6efd;
+    color: #dc3545;
     padding: auto;
-    border: 1px solid #0d6efd;
+    border: 1px solid #dc3545;
     border-radius: 4px;
     cursor: pointer;
     font-size: 18px;
@@ -211,7 +213,7 @@ export const BtnDanger = styled.button`
     height: 40px;
     align-items: center;
     :hover{
-        background-color: #0d6efd;
+        background-color: #dc3545;
         color: #fff;
     }
 `;

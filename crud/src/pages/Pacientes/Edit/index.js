@@ -16,7 +16,6 @@ export const PacientesEdit = (props) => {
     const [telefone,setTelefone] = useState('');
     const [email,setEmail] = useState('');
 
-
     const [status,setStatus] = useState({
         type: '',
         message: ''

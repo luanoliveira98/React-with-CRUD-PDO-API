@@ -3,12 +3,40 @@ import {Link} from 'react-router-dom';
 import { BsFillEyeFill, BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
 
 import configData from "../../../configs/app.json";
-import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnWarning, BtnDanger} from '../../styles';
+import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnWarning, BtnDanger, AlertSuccess, AlertDanger} from '../../styles';
 
 
 export const PacientesList = () => {
 
   const [data, setData] = useState([]);
+
+  const [status,setStatus] = useState({
+    type: '',
+    message: ''
+});
+
+  const destroy = async (id) => {
+
+    await fetch(configData.API_URL+"/pacientes/"+id, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    .then(()  => {
+        setStatus({
+            type: 'success',
+            message: "Excluído com sucesso!"
+        })
+    })
+    .catch(() => {
+        setStatus({
+            type: 'error',
+            message: 'Erro ao conectar com o servidor!'
+        })
+    })
+    getPacientes();
+  };
 
   const getPacientes = async() => {
     fetch(configData.API_URL+"/pacientes")
@@ -31,6 +59,7 @@ export const PacientesList = () => {
                 </Link>
             </ButtonAction>
         </ContentTitulo>
+        {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
         <Table>
           <thead>
             <tr>
@@ -52,7 +81,7 @@ export const PacientesList = () => {
                   <ContentTitulo>
                     <Link to={"/pacientes/"+paciente.id}><BtnPrimary><BsFillEyeFill/></BtnPrimary></Link>
                     <Link to={"/pacientes/"+paciente.id+"/editar"}><BtnWarning><BsPencilSquare/></BtnWarning></Link>
-                    <Link to={"/pacientes/"+paciente.id+"/excluir"}><BtnDanger><BsTrashFill/></BtnDanger></Link>
+                    <BtnDanger onClick={() => destroy(paciente.id)}><BsTrashFill/></BtnDanger>
                   </ContentTitulo>
                 </td>
               </tr>
