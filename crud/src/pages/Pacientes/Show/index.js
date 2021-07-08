@@ -25,15 +25,14 @@ export const PacientesShow = (props) => {
     return (
         <Container>
             <ContentTitulo>
-                <Titulo>Visualizar Paciente</Titulo>
+                <Titulo>{data.nome}</Titulo>
                 <ButtonAction>
                     <Link to="/pacientes">
                         <BtnInfo><FaThList/></BtnInfo>
                     </Link>
                 </ButtonAction>
             </ContentTitulo>
-            <PLg><b>ID:</b> {data.id}</PLg>
-            <PLg><b>Nome:</b> {data.nome}</PLg>
+            <PLg><b>Nº:</b> {data.id}</PLg>
             <PLg><b>Data de Nascimento:</b> {moment(data.dt_nascimento).format('DD/MM/yyyy')}</PLg>
             <PLg><b>Endereço:</b> {data.endereco}</PLg>
             <PLg><b>Telefone:</b> {data.telefone}</PLg>
