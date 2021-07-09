@@ -4,7 +4,7 @@
 
 Instalar as dependências
 
-## npm install
+### npm install
 
 Rodar o projeto react
 
