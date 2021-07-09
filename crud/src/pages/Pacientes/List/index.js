@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { BsFillEyeFill, BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
 
 import configData from "../../../configs/app.json";
-import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnWarning, BtnDanger, AlertSuccess, AlertDanger} from '../../styles';
+import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnWarning, BtnDanger, AlertSuccess, AlertDanger, NavBar} from '../../styles';
 
 
 export const PacientesList = () => {
@@ -53,44 +53,52 @@ export const PacientesList = () => {
     getData();
   },[])
   return (
-    <Container>
-        <ContentTitulo>
-            <Titulo>Listar {title}</Titulo>
-            <ButtonAction>
-                <Link to={"/"+url+"/cadastrar"}>
-                    <BtnSuccess title="Cadastrar"><BsFillPersonPlusFill/></BtnSuccess>
-                </Link>
-            </ButtonAction>
-        </ContentTitulo>
-        {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
-        <Table>
-          <thead>
-            <tr>
-              <th>Nº</th>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>Telefone</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.values(data).map(d => (
-              <tr key={d.id}>
-                <td>{d.id}</td>
-                <td>{d.nome}</td>
-                <td>{d.email}</td>
-                <td>{d.telefone}</td>
-                <td>
-                  <ContentTitulo>
-                    <Link to={"/"+url+"/"+d.id}><BtnPrimary title="Visualizar"><BsFillEyeFill/></BtnPrimary></Link>
-                    <Link to={"/"+url+"/"+d.id+"/editar"}><BtnWarning title="Editar"><BsPencilSquare/></BtnWarning></Link>
-                    <BtnDanger onClick={() => destroy(d.id)} title="Excluir"><BsTrashFill/></BtnDanger>
-                  </ContentTitulo>
-                </td>
+    <div>
+      <NavBar>
+          <div><Link to="/">Home</Link></div>
+          <div><Link to="/pacientes">Pacientes</Link></div>
+          <div><Link to="/consultas">Consultas</Link></div>
+          <div><Link to="/especialidade">Especialidades</Link></div>
+      </NavBar>
+      <Container>
+          <ContentTitulo>
+              <Titulo>Listar {title}</Titulo>
+              <ButtonAction>
+                  <Link to={"/"+url+"/cadastrar"}>
+                      <BtnSuccess title="Cadastrar"><BsFillPersonPlusFill/></BtnSuccess>
+                  </Link>
+              </ButtonAction>
+          </ContentTitulo>
+          {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
+          <Table>
+            <thead>
+              <tr>
+                <th>Nº</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-    </Container>
+            </thead>
+            <tbody>
+              {Object.values(data).map(d => (
+                <tr key={d.id}>
+                  <td>{d.id}</td>
+                  <td>{d.nome}</td>
+                  <td>{d.email}</td>
+                  <td>{d.telefone}</td>
+                  <td>
+                    <ContentTitulo>
+                      <Link to={"/"+url+"/"+d.id}><BtnPrimary title="Visualizar"><BsFillEyeFill/></BtnPrimary></Link>
+                      <Link to={"/"+url+"/"+d.id+"/editar"}><BtnWarning title="Editar"><BsPencilSquare/></BtnWarning></Link>
+                      <BtnDanger onClick={() => destroy(d.id)} title="Excluir"><BsTrashFill/></BtnDanger>
+                    </ContentTitulo>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+      </Container>
+    </div>
   );
 }

@@ -249,3 +249,24 @@ export const BtnWarning = styled.button`
 export const PLg = styled.p`
     font-size: 16px;
 `;
+
+export const NavBar = styled.section`
+    width: 100%;
+    min-height: 50px;
+    background-color: white;
+    border: 3px solid darkcyan;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    justify-content: space-between;
+	display: flex;
+	flex-direction: vertical;
+    div{
+        display: flex;
+        flex: left;
+        margin: auto;
+        a{
+            text-decoration: none;
+        }
+    }
+`;

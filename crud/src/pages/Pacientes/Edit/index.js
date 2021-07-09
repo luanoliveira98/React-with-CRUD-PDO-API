@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { FaThList } from 'react-icons/fa';
 
 import configData from "../../../configs/app.json";
-import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, InputRadio, ButtonWarning, ContentTitulo, ButtonAction, BtnInfo} from '../../styles';
+import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, InputRadio, ButtonWarning, ContentTitulo, ButtonAction, BtnInfo, NavBar} from '../../styles';
 
 export const PacientesEdit = (props) => {
 
@@ -67,47 +67,55 @@ export const PacientesEdit = (props) => {
     }
 
   return (
-    <Container>
-        <ContentTitulo>
-            <Titulo>Editar {title}</Titulo>
-            <ButtonAction>
-                <Link to={"/"+url}>
-                    <BtnInfo title="Listar"><FaThList/></BtnInfo>
-                </Link>
-            </ButtonAction>
-        </ContentTitulo>
-        {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
-        <Form onSubmit={editData}>
-            <div>
-                <Label>Nome Completo:</Label>
-                <Input type="text" name="nome" placeholder="Nome Completo" onChange={e => setNome(e.target.value)} value={nome} /> <br/><br/>
-            </div>
-            <div>
-                <Label>Data de Nascimento:</Label>
-                <Input type="date" name="dt_nascimento" onChange={e => setDtNascimento(e.target.value)} value={dt_nascimento} /> <br/><br/>
-            </div>
-            <div>
-                <Label>Endereço:</Label>
-                <Input type="text" name="endereco" placeholder="Endereço com complemento" onChange={e => setEndereco(e.target.value)} value={endereco} /> <br/><br/>
-            </div>
-            <div>
-                <Label>Sexo:</Label><br></br>
-                <InputRadio type="radio" name="sexo" value="masculino" onChange={e => setSexo(e.target.value)} checked={sexo === 'masculino' ? "checked" : ""} /> Masculino
-                <InputRadio type="radio" name="sexo" value="feminino" onChange={e => setSexo(e.target.value)} checked={sexo === 'feminino' ? "checked" : ""} /> Feminino <br/><br/>
-            </div>
-            <div>
-                <Label>Telefone:</Label>
-                <Input type="number" name="telefone" placeholder="Telefone com DDD" onChange={e => setTelefone(e.target.value)} value={telefone} /> <br/><br/>
-            </div>
-            <div>
-                <Label>Email:</Label>
-                <Input type="email" name="email" placeholder="Email para contato" onChange={e => setEmail(e.target.value)}  value={email} /> <br/><br/>
-            </div>
+      <div>
+        <NavBar>
+            <div><Link to="/">Home</Link></div>
+            <div><Link to="/pacientes">Pacientes</Link></div>
+            <div><Link to="/consultas">Consultas</Link></div>
+            <div><Link to="/especialidade">Especialidades</Link></div>
+        </NavBar>
+        <Container>
+            <ContentTitulo>
+                <Titulo>Editar {title}</Titulo>
+                <ButtonAction>
+                    <Link to={"/"+url}>
+                        <BtnInfo title="Listar"><FaThList/></BtnInfo>
+                    </Link>
+                </ButtonAction>
+            </ContentTitulo>
+            {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
+            <Form onSubmit={editData}>
+                <div>
+                    <Label>Nome Completo:</Label>
+                    <Input type="text" name="nome" placeholder="Nome Completo" onChange={e => setNome(e.target.value)} value={nome} /> <br/><br/>
+                </div>
+                <div>
+                    <Label>Data de Nascimento:</Label>
+                    <Input type="date" name="dt_nascimento" onChange={e => setDtNascimento(e.target.value)} value={dt_nascimento} /> <br/><br/>
+                </div>
+                <div>
+                    <Label>Endereço:</Label>
+                    <Input type="text" name="endereco" placeholder="Endereço com complemento" onChange={e => setEndereco(e.target.value)} value={endereco} /> <br/><br/>
+                </div>
+                <div>
+                    <Label>Sexo:</Label><br></br>
+                    <InputRadio type="radio" name="sexo" value="masculino" onChange={e => setSexo(e.target.value)} checked={sexo === 'masculino' ? "checked" : ""} /> Masculino
+                    <InputRadio type="radio" name="sexo" value="feminino" onChange={e => setSexo(e.target.value)} checked={sexo === 'feminino' ? "checked" : ""} /> Feminino <br/><br/>
+                </div>
+                <div>
+                    <Label>Telefone:</Label>
+                    <Input type="number" name="telefone" placeholder="Telefone com DDD" onChange={e => setTelefone(e.target.value)} value={telefone} /> <br/><br/>
+                </div>
+                <div>
+                    <Label>Email:</Label>
+                    <Input type="email" name="email" placeholder="Email para contato" onChange={e => setEmail(e.target.value)}  value={email} /> <br/><br/>
+                </div>
 
-            <div>
-                <ButtonWarning type="submit">Editar</ButtonWarning>
-            </div>
-        </Form>
-    </Container>
+                <div>
+                    <ButtonWarning type="submit">Editar</ButtonWarning>
+                </div>
+            </Form>
+        </Container>
+    </div>
   );
 }
