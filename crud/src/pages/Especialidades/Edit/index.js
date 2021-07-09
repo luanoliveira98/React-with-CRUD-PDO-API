@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-sequences */
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { FaThList } from 'react-icons/fa';
 
 import configData from "../../../configs/app.json";
-import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, InputRadio, ButtonWarning, ContentTitulo, ButtonAction, BtnInfo, NavBar} from '../../styles';
+import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, ButtonWarning, ContentTitulo, ButtonAction, BtnInfo, NavBar} from '../../styles';
 
 export const EspecialidadesEdit = (props) => {
 

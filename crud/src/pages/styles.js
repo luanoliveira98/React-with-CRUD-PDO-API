@@ -82,6 +82,17 @@ export const Input = styled.input`
     resize: vertical;
 `;
 
+export const Select = styled.select`
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+`;
+
 export const InputRadio = styled.input`
     padding: 12px;
     border: 1px solid #ccc;

@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import { BsFillEyeFill, BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
+import { BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
 
 import configData from "../../../configs/app.json";
 import {Table, Titulo, Container, ContentTitulo, ContentActionSolo, ButtonAction, BtnSuccess, BtnWarning, BtnDanger, AlertSuccess, AlertDanger, NavBar} from '../../styles';

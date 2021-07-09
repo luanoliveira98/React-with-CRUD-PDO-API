@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { FaThList } from 'react-icons/fa';
 
 import configData from "../../../configs/app.json";
-import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, ButtonSuccess, ContentTitulo, ButtonAction, BtnInfo, NavBar} from '../../styles';
+import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, Select, ButtonSuccess, ContentTitulo, ButtonAction, BtnInfo, NavBar} from '../../styles';
 
-export const EspecialidadesCreate = () => {
+export const ConsultasCreate = () => {
 
     const [data,setData] = useState({
-        nome: '',
+        paciente_id: '',
+        dt_agendamento: '',
+        horario: '',
+        especialidade_id: ''
     });
 
-    const [title] = useState('Especialidade');
-    const [url] = useState('especialidades');
+    const [title] = useState('Consulta');
+    const [url] = useState('consultas');
+
+    const [pacientes, setPacientes] = useState([]);
+    const [especialidades, setEspecialidades] = useState([]);
 
     const [status,setStatus] = useState({
         type: '',
@@ -53,6 +59,27 @@ export const EspecialidadesCreate = () => {
         })
     }
 
+    const getPacientes = async() => {
+        fetch(configData.API_URL+"/pacientes")
+        .then((response) => response.json())
+        .then((responseJson) => (
+        setPacientes(responseJson.data)
+        ));
+    }
+
+    const getEspecialidades = async() => {
+        fetch(configData.API_URL+"/especialidades")
+        .then((response) => response.json())
+        .then((responseJson) => (
+        setEspecialidades(responseJson.data)
+        ));
+    }
+
+    useEffect(() => {
+        getPacientes();
+        getEspecialidades();
+    }, [])
+
   return (
     <div>
         <NavBar>
@@ -73,8 +100,28 @@ export const EspecialidadesCreate = () => {
             {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
             <Form onSubmit={registerData}>
                 <div>
-                    <Label>Nome</Label>
-                    <Input type="text" name="nome" placeholder="Nome" onChange={valorInput}/> <br/><br/>
+                    <Label>Paciente:</Label>
+                    <Select name="paciente_id" onChange={valorInput}>
+                    {Object.values(pacientes).map(d => (
+                        <option key={d.id} value={d.id}>{d.nome}</option>
+                    ))}
+                    </Select> <br/><br/>
+                </div>
+                <div>
+                    <Label>Data da Consulta:</Label>
+                    <Input type="date" name="dt_agendamento" onChange={valorInput}/> <br/><br/>
+                </div>
+                <div>
+                    <Label>Horário da Consulta:</Label>
+                    <Input type="time" name="horario" onChange={valorInput}/> <br/><br/>
+                </div>
+                <div>
+                    <Label>Especialidade:</Label>
+                    <Select name="especialidade_id" onChange={valorInput}>
+                    {Object.values(especialidades).map(d => (
+                        <option key={d.id} value={d.id}>{d.nome}</option>
+                    ))}
+                    </Select> <br/><br/>
                 </div>
 
                 <div>

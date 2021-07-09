@@ -38,7 +38,6 @@ export const PacientesCreate = () => {
         })
         .then((response) => response.json())
         .then((responseJson) => {
-            console.log(responseJson)
             if(responseJson.status === 'success') {
                 setStatus({
                     type: responseJson.status,
