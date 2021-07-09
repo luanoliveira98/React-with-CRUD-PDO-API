@@ -5,19 +5,14 @@ import { FaThList } from 'react-icons/fa';
 import configData from "../../../configs/app.json";
 import {Titulo, AlertSuccess, AlertDanger, Container, Form, Label, Input, InputRadio, ButtonSuccess, ContentTitulo, ButtonAction, BtnInfo, NavBar} from '../../styles';
 
-export const PacientesCreate = () => {
+export const EspecialidadesCreate = () => {
 
     const [data,setData] = useState({
         nome: '',
-        dt_nascimento: '',
-        endereco: '',
-        sexo: '',
-        telefone: '',
-        email: ''
     });
 
-    const [title] = useState('Paciente');
-    const [url] = useState('pacientes');
+    const [title] = useState('Especialidade');
+    const [url] = useState('especialidades');
 
     const [status,setStatus] = useState({
         type: '',
@@ -79,29 +74,8 @@ export const PacientesCreate = () => {
             {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
             <Form onSubmit={registerData}>
                 <div>
-                    <Label>Nome Completo:</Label>
-                    <Input type="text" name="nome" placeholder="Nome Completo" onChange={valorInput}/> <br/><br/>
-                </div>
-                <div>
-                    <Label>Data de Nascimento:</Label>
-                    <Input type="date" name="dt_nascimento" onChange={valorInput}/> <br/><br/>
-                </div>
-                <div>
-                    <Label>Endereço:</Label>
-                    <Input type="text" name="endereco" placeholder="Endereço com complemento"  onChange={valorInput}/> <br/><br/>
-                </div>
-                <div>
-                    <Label>Sexo:</Label><br></br>
-                    <InputRadio type="radio" name="sexo" value="masculino" onChange={valorInput}/> Masculino
-                    <InputRadio type="radio" name="sexo" value="feminino" onChange={valorInput}/> Feminino <br/><br/>
-                </div>
-                <div>
-                    <Label>Telefone:</Label>
-                    <Input type="number" name="telefone" placeholder="Telefone com DDD" onChange={valorInput}/> <br/><br/>
-                </div>
-                <div>
-                    <Label>Email:</Label>
-                    <Input type="email" name="email" placeholder="Email para contato"  onChange={valorInput}/> <br/><br/>
+                    <Label>Nome</Label>
+                    <Input type="text" name="nome" placeholder="Nome" onChange={valorInput}/> <br/><br/>
                 </div>
 
                 <div>

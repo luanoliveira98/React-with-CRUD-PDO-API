@@ -43,7 +43,6 @@ export const PacientesEdit = (props) => {
 
     const editData = async e => {
         e.preventDefault();
-        console.log(sexo);
 
         await fetch(configData.API_URL+"/"+url+"/"+id, {
             method: 'PUT',
@@ -72,7 +71,7 @@ export const PacientesEdit = (props) => {
             <div><Link to="/">Home</Link></div>
             <div><Link to="/pacientes">Pacientes</Link></div>
             <div><Link to="/consultas">Consultas</Link></div>
-            <div><Link to="/especialidade">Especialidades</Link></div>
+            <div><Link to="/especialidades">Especialidades</Link></div>
         </NavBar>
         <Container>
             <ContentTitulo>
