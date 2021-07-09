@@ -102,9 +102,10 @@ export const ConsultasCreate = () => {
                 <div>
                     <Label>Paciente:</Label>
                     <Select name="paciente_id" onChange={valorInput}>
-                    {Object.values(pacientes).map(d => (
-                        <option key={d.id} value={d.id}>{d.nome}</option>
-                    ))}
+                        <option value="">Selecione um paciente</option>
+                        {Object.values(pacientes).map(d => (
+                            <option key={d.id} value={d.id}>{d.nome}</option>
+                        ))}
                     </Select> <br/><br/>
                 </div>
                 <div>
@@ -118,9 +119,10 @@ export const ConsultasCreate = () => {
                 <div>
                     <Label>Especialidade:</Label>
                     <Select name="especialidade_id" onChange={valorInput}>
-                    {Object.values(especialidades).map(d => (
-                        <option key={d.id} value={d.id}>{d.nome}</option>
-                    ))}
+                        <option value="">Selecione uma especialidade</option>
+                        {Object.values(especialidades).map(d => (
+                            <option key={d.id} value={d.id}>{d.nome}</option>
+                        ))}
                     </Select> <br/><br/>
                 </div>
 

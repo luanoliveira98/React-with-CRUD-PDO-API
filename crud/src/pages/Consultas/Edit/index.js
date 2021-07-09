@@ -63,7 +63,6 @@ export const ConsultasEdit = (props) => {
 
     const editData = async e => {
         e.preventDefault();
-        console.log({paciente_id, dt_agendamento, horario, especialidade_id, status});
 
         await fetch(configData.API_URL+"/"+url+"/"+id, {
             method: 'PUT',
@@ -73,10 +72,20 @@ export const ConsultasEdit = (props) => {
             body: JSON.stringify({paciente_id, dt_agendamento, horario, especialidade_id, status})
         })
         .then((response)  => {
-            setStatusHttp({
-                type: 'success',
-                message: "Editado com sucesso!"
-            })
+            if (response.status === 400) {
+                response.json().then(responseJson => {
+                    console.log(responseJson);
+                    setStatusHttp({
+                        type: 'error',
+                        message: (!responseJson.data) ? responseJson.message : responseJson.data[0].message
+                    })
+                });
+            } else {
+                setStatusHttp({
+                    type: 'success',
+                    message: "Editado com sucesso!"
+                })
+            }
         })
         .catch(() => {
             setStatusHttp({

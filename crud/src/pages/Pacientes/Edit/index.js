@@ -52,11 +52,21 @@ export const PacientesEdit = (props) => {
             },
             body: JSON.stringify({nome, dt_nascimento, endereco, sexo, telefone, email})
         })
-        .then(()  => {
-            setStatus({
-                type: 'success',
-                message: "Editado com sucesso!"
-            })
+        .then((response)  => {
+            if (response.status === 400) {
+                response.json().then(responseJson => {
+                    console.log(responseJson);
+                    setStatus({
+                        type: 'error',
+                        message: (!responseJson.data) ? responseJson.message : responseJson.data[0].message
+                    })
+                });
+            } else {
+                setStatus({
+                    type: 'success',
+                    message: "Editado com sucesso!"
+                })
+            }
         })
         .catch(() => {
             setStatus({

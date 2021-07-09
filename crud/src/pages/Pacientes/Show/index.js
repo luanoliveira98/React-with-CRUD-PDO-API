@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import * as moment from 'moment';
 import { FaThList, FaCheck } from 'react-icons/fa';
+import { BsFillEyeFill, BsPencilSquare, BsTrashFill } from 'react-icons/bs';
 
 import configData from "../../../configs/app.json";
-import {Titulo, Container, ContentTitulo, ButtonAction, BtnInfo, PLg, Table, BtnSuccess, ContentActionSolo, TextCenter, AlertSuccess, AlertDanger, NavBar} from '../../styles';
+import {Titulo, Container, ContentTitulo, ButtonAction, BtnInfo, PLg, Table, BtnSuccess, TextCenter, AlertSuccess, AlertDanger, NavBar, BtnPrimary, BtnWarning, BtnDanger} from '../../styles';
 
 export const PacientesShow = (props) => {
 
@@ -28,6 +29,29 @@ export const PacientesShow = (props) => {
             setData(responseJson.data)
         ));
     }
+  
+    const destroy = async (id) => {
+  
+      await fetch(configData.API_URL+"/consultas/"+id, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      })
+      .then(()  => {
+          setStatus({
+              type: 'success',
+              message: "Excluído com sucesso!"
+          })
+          getConsultas();
+      })
+      .catch(() => {
+          setStatus({
+              type: 'error',
+              message: 'Erro ao conectar com o servidor!'
+          })
+      })
+    };
 
     const execute = async (id) => {
 
@@ -110,9 +134,12 @@ export const PacientesShow = (props) => {
                             <td>{d.especialidade}</td>
                             <td>{d.status}</td>
                             <td>
-                            <ContentActionSolo>
+                            <ContentTitulo>
+                                <Link to={"/consultas/"+d.id}><BtnPrimary title="Visualizar"><BsFillEyeFill/></BtnPrimary></Link>
+                                <Link to={"/consultas/"+d.id+"/editar"}><BtnWarning title="Editar"><BsPencilSquare/></BtnWarning></Link>
                                 {d.status === 'Pendente' ? <BtnSuccess title='Concluir Consulta' onClick={() => execute(d.id)}><FaCheck/></BtnSuccess> : ""}
-                            </ContentActionSolo>
+                                <BtnDanger onClick={() => destroy(d.id)} title="Excluir"><BsTrashFill/></BtnDanger>
+                            </ContentTitulo>
                             </td>
                         </tr>
                         ))}

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import * as moment from 'moment';
-import { BsFillPersonPlusFill } from 'react-icons/bs';
+import { BsFillEyeFill, BsPencilSquare, BsTrashFill, BsFillPersonPlusFill } from 'react-icons/bs';
 import { FaNotesMedical, FaLaptopMedical, FaCheck } from 'react-icons/fa';
 import configData from "../../configs/app.json";
 
-import {Titulo, NavBar, Container, ContentTitulo, ButtonAction, BtnSuccess, TextCenter, Table, ContentActionSolo, AlertSuccess, AlertDanger} from '../styles';
+import {Titulo, NavBar, Container, ContentTitulo, ButtonAction, BtnSuccess, TextCenter, Table, AlertSuccess, AlertDanger, BtnPrimary, BtnWarning, BtnDanger} from '../styles';
 
 export const Home = () => {
 
@@ -14,7 +14,30 @@ export const Home = () => {
   const [status,setStatus] = useState({
     type: '',
     message: ''
-  });  
+  });
+  
+  const destroy = async (id) => {
+
+    await fetch(configData.API_URL+"/consultas/"+id, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    })
+    .then(()  => {
+        setStatus({
+            type: 'success',
+            message: "Excluído com sucesso!"
+        })
+        getConsultas();
+    })
+    .catch(() => {
+        setStatus({
+            type: 'error',
+            message: 'Erro ao conectar com o servidor!'
+        })
+    })
+  };
 
   const execute = async (id) => {
 
@@ -102,9 +125,12 @@ export const Home = () => {
                       <td>{d.especialidade}</td>
                       <td>{d.status}</td>
                       <td>
-                      <ContentActionSolo>
-                          {d.status === 'Pendente' ? <BtnSuccess title='Concluir Consulta' onClick={() => execute(d.id)}><FaCheck/></BtnSuccess> : ""}
-                      </ContentActionSolo>
+                      <ContentTitulo>
+                        <Link to={"/consultas/"+d.id}><BtnPrimary title="Visualizar"><BsFillEyeFill/></BtnPrimary></Link>
+                        <Link to={"/consultas/"+d.id+"/editar"}><BtnWarning title="Editar"><BsPencilSquare/></BtnWarning></Link>
+                        {d.status === 'Pendente' ? <BtnSuccess title='Concluir Consulta' onClick={() => execute(d.id)}><FaCheck/></BtnSuccess> : ""}
+                        <BtnDanger onClick={() => destroy(d.id)} title="Excluir"><BsTrashFill/></BtnDanger>
+                      </ContentTitulo>
                       </td>
                   </tr>
                   ))}
