@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import * as moment from 'moment';
-import { BsFillEyeFill, BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
-import { FaCheck } from 'react-icons/fa';
+import { BsFillEyeFill, BsPencilSquare, BsTrashFill } from 'react-icons/bs';
+import { FaCheck, FaNotesMedical } from 'react-icons/fa';
 
 import configData from "../../../configs/app.json";
 import {Table, Titulo, Container, ContentTitulo, ButtonAction, BtnSuccess, BtnPrimary, BtnWarning, BtnDanger, AlertSuccess, AlertDanger, NavBar} from '../../styles';
@@ -87,7 +87,7 @@ export const ConsultasList = () => {
               <Titulo>Listar {title}</Titulo>
               <ButtonAction>
                   <Link to={"/"+url+"/cadastrar"}>
-                      <BtnSuccess title="Cadastrar"><BsFillPersonPlusFill/></BtnSuccess>
+                      <BtnSuccess title="Agendar Consulta"><FaNotesMedical/></BtnSuccess>
                   </Link>
               </ButtonAction>
           </ContentTitulo>

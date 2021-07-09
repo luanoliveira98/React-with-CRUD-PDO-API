@@ -66,7 +66,7 @@ export const PacientesList = () => {
               <Titulo>Listar {title}</Titulo>
               <ButtonAction>
                   <Link to={"/"+url+"/cadastrar"}>
-                      <BtnSuccess title="Cadastrar"><BsFillPersonPlusFill/></BtnSuccess>
+                      <BtnSuccess title="Cadastrar Paciente"><BsFillPersonPlusFill/></BtnSuccess>
                   </Link>
               </ButtonAction>
           </ContentTitulo>

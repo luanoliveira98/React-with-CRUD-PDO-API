@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import { BsPencilSquare, BsFillPersonPlusFill, BsTrashFill } from 'react-icons/bs';
+import { BsPencilSquare, BsTrashFill } from 'react-icons/bs';
+import { FaLaptopMedical } from 'react-icons/fa';
 
 import configData from "../../../configs/app.json";
 import {Table, Titulo, Container, ContentTitulo, ContentActionSolo, ButtonAction, BtnSuccess, BtnWarning, BtnDanger, AlertSuccess, AlertDanger, NavBar} from '../../styles';
@@ -66,7 +67,7 @@ export const EspecialidadesList = () => {
               <Titulo>Listar {title}</Titulo>
               <ButtonAction>
                   <Link to={"/"+url+"/cadastrar"}>
-                      <BtnSuccess title="Cadastrar"><BsFillPersonPlusFill/></BtnSuccess>
+                      <BtnSuccess title="Cadastrar Especialidade"><FaLaptopMedical/></BtnSuccess>
                   </Link>
               </ButtonAction>
           </ContentTitulo>

@@ -125,7 +125,7 @@ export const ConsultasCreate = () => {
                 </div>
 
                 <div>
-                    <ButtonSuccess type="submit">Cadastrar</ButtonSuccess>
+                    <ButtonSuccess type="submit">Agendar</ButtonSuccess>
                 </div>
             </Form>
         </Container>

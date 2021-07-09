@@ -104,7 +104,7 @@ export const InputRadio = styled.input`
 `;
 
 export const ButtonAction = styled.section`
-    margin: 25px 0;
+    margin: 25px 2px;
 `;
 
 export const ButtonSuccess = styled.button`
