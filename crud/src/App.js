@@ -12,6 +12,11 @@ import {EspecialidadesList} from './pages/Especialidades/List';
 import {EspecialidadesCreate} from './pages/Especialidades/Create';
 import {EspecialidadesEdit} from './pages/Especialidades/Edit';
 
+import {ConsultasList} from './pages/Consultas/List';
+import {ConsultasCreate} from './pages/Consultas/Create';
+import {ConsultasShow} from './pages/Consultas/Show';
+import {ConsultasEdit} from './pages/Consultas/Edit';
+
 function App() {
   return (
     <div>
@@ -27,6 +32,11 @@ function App() {
           <Route exact path="/especialidades" component={EspecialidadesList}/>
           <Route path="/especialidades/cadastrar" component={EspecialidadesCreate}/>
           <Route path="/especialidades/:id/editar" component={EspecialidadesEdit}/>
+          
+          <Route exact path="/consultas" component={ConsultasList}/>
+          <Route path="/consultas/cadastrar" component={ConsultasCreate}/>
+          <Route exact path="/consultas/:id" component={ConsultasShow}/>
+          <Route path="/consultas/:id/editar" component={ConsultasEdit}/>
         </Switch>
       </Router>
     </div>
