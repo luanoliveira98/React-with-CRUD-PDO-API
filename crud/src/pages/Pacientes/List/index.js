@@ -16,7 +16,7 @@ export const PacientesList = () => {
   const [status,setStatus] = useState({
     type: '',
     message: ''
-});
+  });
 
   const destroy = async (id) => {
 

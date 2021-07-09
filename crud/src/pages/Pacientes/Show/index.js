@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import * as moment from 'moment';
-import { FaThList } from 'react-icons/fa';
+import { FaThList, FaCheck } from 'react-icons/fa';
 
 import configData from "../../../configs/app.json";
-import {Titulo, Container, ContentTitulo, ButtonAction, BtnInfo, PLg, Table, BtnWarning, ContentActionSolo, TextCenter} from '../../styles';
+import {Titulo, Container, ContentTitulo, ButtonAction, BtnInfo, PLg, Table, BtnSuccess, ContentActionSolo, TextCenter, AlertSuccess, AlertDanger} from '../../styles';
 
 export const PacientesShow = (props) => {
 
@@ -15,6 +15,11 @@ export const PacientesShow = (props) => {
     const [title] = useState('Paciente');
     const [url] = useState('pacientes');
 
+    const [status,setStatus] = useState({
+      type: '',
+      message: ''
+    });
+
     const getData = async() => {
         fetch(configData.API_URL+"/"+url+"/"+id)
         .then((response) => response.json())
@@ -22,6 +27,25 @@ export const PacientesShow = (props) => {
             setData(responseJson.data)
         ));
     }
+
+    const execute = async (id) => {
+
+        await fetch(configData.API_URL+"/consultas/"+id, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(()  => {
+            getConsultas();
+        })
+        .catch(() => {
+            setStatus({
+                type: 'error',
+                message: 'Erro ao conectar com o servidor!'
+            })
+        })
+    };
 
   const getConsultas = async() => {
     fetch(configData.API_URL+"/consultas/paciente/"+id)
@@ -34,7 +58,7 @@ export const PacientesShow = (props) => {
     useEffect(() => {
         getData();
         getConsultas();
-    })
+    }, [])
     return (
         <Container>
             <ContentTitulo>
@@ -57,6 +81,7 @@ export const PacientesShow = (props) => {
             <TextCenter>
                 <Titulo>Consultas</Titulo>
             </TextCenter>
+            {status.type === 'success' ? <AlertSuccess>{status.message}</AlertSuccess> : status.type === 'error' ? <AlertDanger>{status.message}</AlertDanger> : ""}
             <Table>
                 <thead>
                     <tr>
@@ -78,7 +103,7 @@ export const PacientesShow = (props) => {
                         <td>{d.status}</td>
                         <td>
                         <ContentActionSolo>
-                            <Link to={"/"+url+"/"+d.id+"/editar"}><BtnWarning title="Encerrar Consulta"><FaThList/></BtnWarning></Link>
+                            {d.status === 'Pendente' ? <BtnSuccess title='Concluir Consulta' onClick={() => execute(d.id)}><FaCheck/></BtnSuccess> : ""}
                         </ContentActionSolo>
                         </td>
                     </tr>
